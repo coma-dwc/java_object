@@ -14,13 +14,18 @@ public class Player {
 		return this.name;
 	}
 	
+//	public JankenHand nextHand() {
+//		int n = random.nextInt(3);
+//		switch (n) {
+//		case 0: return JankenHand.Rock;
+//		case 1: return JankenHand.Scissors;
+//		case 2: return JankenHand.Paper;
+//		}
+//		throw new IllegalStateException();
+//	}
+	
 	public JankenHand nextHand() {
 		int n = random.nextInt(3);
-		switch (n) {
-		case 0: return JankenHand.Rock;
-		case 1: return JankenHand.Scissors;
-		case 2: return JankenHand.Paper;
-		}
-		throw new IllegalStateException();
+		return JankenHand.fromInt(n);
 	}
 }
