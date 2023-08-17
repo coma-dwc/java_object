@@ -23,4 +23,19 @@ public enum JankenHand {
 		}
 		throw new IllegalStateException(Integer.toString(n));
 	}
+	
+	//winToメソッド
+	public boolean winTo(JankenHand hand) {
+		switch(this) {
+			case Rock: return hand == Scissors;
+			case Scissors: return hand == Paper;
+			case Paper: return hand == Rock;
+		}
+		throw new IllegalStateException();
+	}
+	
+	//loseToメソッド
+	public boolean loseTo(JankenHand hand) {
+		return this != hand && !winTo(hand);
+	}
 }

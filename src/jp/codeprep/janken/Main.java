@@ -9,10 +9,19 @@ public class Main {
 		JankenHand hand1 = player1.nextHand();
 		JankenHand hand2 = player2.nextHand();
 		
+		
+		//勝敗を表示する
+		String result = hand1.winTo(hand2) ?
+							player1.getName() + "の勝利" :
+						hand1.loseTo(hand2) ?
+							player2.getName() + "の勝利" : "あいこ";
+		
+		
 		System.out.println(
-			String.format("%s: %s - %s :%s",
+			String.format("%s: %s - %s :%s (%s)",  //(%s)を追記
 				player1.getName(), hand1,
-				hand2, player2.getName()
+				hand2, player2.getName(),
+				result  //resultを追記
 			)
 		);
 	}
