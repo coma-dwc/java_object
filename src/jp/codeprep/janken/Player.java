@@ -1,10 +1,9 @@
 package jp.codeprep.janken;
 
-import java.util.Random;
-
 public class Player {
 	private String name;
-	private Random random = new Random();
+//	private Random random = new Random();
+	private JankenStrategy strategy = new RandomStrategy();
 	
 	public Player(String name) {
 		this.name = name;
@@ -12,6 +11,16 @@ public class Player {
 	
 	public String getName() {
 		return this.name;
+	}
+	
+	
+	//PlayerにStrategyのgetter/setterを追加
+	public JankenStrategy getStrategy() {
+		return this.strategy;
+	}
+	
+	public void setStrategy(JankenStrategy strategy) {
+		this.strategy = strategy;
 	}
 	
 //	public JankenHand nextHand() {
@@ -24,8 +33,14 @@ public class Player {
 //		throw new IllegalStateException();
 //	}
 	
+//	public JankenHand nextHand() {
+//		int n = random.nextInt(3);
+//		return JankenHand.fromInt(n);
+//	}
+	
+	
+	//Randomを使用していたものからstrategyを使用するように置き換え
 	public JankenHand nextHand() {
-		int n = random.nextInt(3);
-		return JankenHand.fromInt(n);
+		return strategy.nextHand();
 	}
 }

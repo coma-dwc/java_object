@@ -7,6 +7,8 @@ public class Main {
 	public static void main(String[] args) {
 		Player player1 = new Player("Taro");
 		Player player2 = new Player("Hanako");
+		//Hanakoの戦略をFixedHandStrategyに変えて勝負
+		player2.setStrategy(new FixedHandStrategy(JankenHand.Rock));
 		
 		//勝利数初期化
 		int player1win = 0;
