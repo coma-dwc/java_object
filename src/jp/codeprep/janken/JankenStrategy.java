@@ -4,6 +4,9 @@ import java.util.Random;
 
 //じゃんけん戦略を分離する JankenStrategyを定義
 public interface JankenStrategy {
+	//JankenStrategyにprevHandsを追加
+	public default void prevHands(JankenHand myHand, JankenHand opponentHand) {}
+	
 	public JankenHand nextHand();
 }
 
