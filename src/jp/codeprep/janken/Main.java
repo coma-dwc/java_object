@@ -8,7 +8,10 @@ public class Main {
 		Player player1 = new Player("Taro");
 		Player player2 = new Player("Hanako");
 		//Hanakoの戦略をFixedHandStrategyに変えて勝負
-		player2.setStrategy(new FixedHandStrategy(JankenHand.Rock));
+//		player2.setStrategy(new FixedHandStrategy(JankenHand.Rock));
+		
+		//HanakoにChottoKashikoiStrategyを使わせて勝負させる
+		player2.setStrategy(new ChottoKashikoiStrategy());
 		
 		//勝利数初期化
 		int player1win = 0;
@@ -41,6 +44,9 @@ public class Main {
 		if (hand2.winTo(hand1)) {
 			player2win++;
 		}
+		//HanakoにChottoKashikoiStrategyを使わせて勝負させる(追記)
+		player1.prevHands(hand1,  hand2);
+		player2.prevHands(hand2,  hand1);
 		}
 		String finalResult = player1win > player2win ?
 								player1.getName() + "の勝利" :
