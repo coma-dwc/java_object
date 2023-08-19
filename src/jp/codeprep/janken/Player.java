@@ -38,7 +38,10 @@ public class Player {
 //		return JankenHand.fromInt(n);
 //	}
 	
-	
+	//JankenStrategyにprevHandsを通知するために、PlayerにもprevHandsを追加
+	public void prevHands(JankenHand myHand, JankenHand opponentHand) {
+		strategy.prevHands(myHand,  opponentHand);
+	}
 	//Randomを使用していたものからstrategyを使用するように置き換え
 	public JankenHand nextHand() {
 		return strategy.nextHand();

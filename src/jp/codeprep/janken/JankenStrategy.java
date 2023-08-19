@@ -31,3 +31,29 @@ class FixedHandStrategy implements JankenStrategy {
 		return this.hand;
 	}
 }
+
+class ChottoKashikoiStrategy implements JankenStrategy {
+	
+	private JankenHand prevMyHand;
+	private JankenHand prevOpponentHand;
+	
+	@Override
+	public void prevHands(JankenHand myHand, JankenHand opponentHand) {
+		prevMyHand = myHand;
+		prevOpponentHand = opponentHand;
+	}
+	
+	public JankenHand nextHand() {
+		//初回は前回の手がないのでRandomStrategyを流用
+		if(prevMyHand == null || prevOpponentHand == null) {
+			return new RandomStrategy().nextHand();
+		}
+		if(prevMyHand.winTo(prevOpponentHand)) { //自分が勝った場合
+			return JankenHand.fromInt(prevMyHand.ordinal() + 1);
+		} else if (prevMyHand.loseTo(prevMyHand)) { //相手が勝った場合
+			return prevOpponentHand;
+		} else {
+			return prevMyHand;
+		}
+	}
+}
